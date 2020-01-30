@@ -28,7 +28,7 @@ module.exports = {
    */
   async create(ctx) {
     try {
-      const { firstName, lastName, email, password } = ctx.request.body;
+      const { firstName, lastName, email, password, isAdmin } = ctx.request.body;
       if (!firstName) throw (400, 'Firstname is required!');
       if (!lastName) throw (400, 'Lastname is required!');
       if (!email) throw (400, 'E-mail is required!');
@@ -55,6 +55,9 @@ module.exports = {
 
   },
   async delete(ctx) {
+    
+  },
+  async login(ctx) {
     
   }
 }
