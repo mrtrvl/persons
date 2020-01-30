@@ -13,6 +13,7 @@ module.exports = {
       const person = await ctx.db.Person.findOne({ where: {id: personId}});
       if(!person) throw(401, 'Unauthorized!');
       ctx.state.user = personId;
+      ctx.state.isAdmin = person.isAdmin;
       await next();
     } catch (error) {
       console.error(error);

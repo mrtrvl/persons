@@ -15,7 +15,7 @@ module.exports = {
   },
   async verify(token) {
     try {
-      const decoded = await jwt.decode(token, JWT_SECRET);
+      const decoded = await jwt.verify(token, JWT_SECRET);
       return decoded;
     } catch (error) {
       console.error(error);

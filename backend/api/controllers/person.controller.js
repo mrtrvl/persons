@@ -73,6 +73,38 @@ module.exports = {
       }
     }
   },
+  /**
+   * @api {get} /api/person Create new Person
+   * @apiGroup Person
+   * @apiName findAllPersons
+   * @apiDescription Authenticated Person can get list of Persons
+   * @apiHeader {String} authorization Users authorization Bearer token
+   * @apiHeaderExample {json} Header-Example:
+   *  {
+   *    "Authorization": "Bearer usersTokenValue"
+   *  }
+   * @apiSuccessExample {json} Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *   "message": "All persons.",
+   *   "success": true,
+   *   "persons": [
+   *      {
+   *        "id": 1,
+   *        "firstName": "John",
+   *        "lastName": "Doe",
+   *        "email": "john@john.com",
+   *        "isAdmin": false
+   *      }
+   *    ]
+   * }
+   * @apiErrorExample {json} Error-Response:
+   * HTTP/1.1 500
+   * {
+   *   "error": "error",
+   *   "success": false
+   * }
+   */
   async findAll(ctx) {
     try {
       const persons = await ctx.db.Person.findAll({
