@@ -75,8 +75,14 @@ module.exports = {
   },
   async findAll(ctx) {
     try {
-      const persons = await ctx.db.Person.findAll({attributes: ['id', 'firstName', 'lastName', 'email', 'isAdmin']});
-      console.log(persons);
+      const persons = await ctx.db.Person.findAll({
+        attributes: [
+          'id',
+          'firstName',
+          'lastName',
+          'email',
+          'isAdmin'
+        ]});
       ctx.body = {
         message: 'All persons.',
         success: true,
@@ -102,7 +108,6 @@ module.exports = {
   },
   async login(ctx) {
     try {
-      console.log(ctx.request.body);
       const { email, password } = ctx.request.body;
       if (!email) throw(500, 'E-mail is required!');
       if (!password) throw(500, 'Password is required!');
@@ -124,5 +129,39 @@ module.exports = {
         success: false
       }
     }
+  },
+  async profile(ctx) {
+    try {
+      const person = await findPerson(ctx);
+      if (!person) throw (500, 'User error!');
+      ctx.body = {
+        message: 'User profile',
+        success: true,
+        person
+      };
+    } catch (error) {
+      console.log(error);
+      ctx.body = {
+        message: error,
+        success: false
+      }
+    }
   }
+}
+
+const findPerson = async (ctx) => {
+  const id = await ctx.state.user;
+  const person = await ctx.db.Person.findOne(
+    {
+      where: { id },
+      attributes: [
+        'id',
+        'firstName',
+        'lastName',
+        'email',
+        'isAdmin'
+      ]
+    });
+  if (!person) return false;
+  return person;
 }

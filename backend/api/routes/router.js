@@ -14,6 +14,7 @@ router
 router
   .post('/person', isAuthenticated, PersonController.create)
   .post('/login', PersonController.login)
-  .get('/person', isAuthenticated ,PersonController.findAll);
+  .get('/person', isAuthenticated, PersonController.findAll)
+  .get('/profile', isAuthenticated, PersonController.profile);
 
 module.exports = router;
