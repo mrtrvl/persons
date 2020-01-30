@@ -11,10 +11,11 @@ module.exports = {
    *   "success": true
    * }
    */
-  async health(ctx) {
+  async health(ctx, next) {
     ctx.body = {
       message: 'Healthy!',
-      success:true
+      success: true
     }
+    next();
   }
 }

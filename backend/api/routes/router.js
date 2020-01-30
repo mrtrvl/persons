@@ -1,10 +1,16 @@
 const Router = require('koa-router');
 const router = new Router({ prefix: '/api'});
 const {
-  HealthController
+  HealthController,
+  PersonController
 } = require('../controllers');
 
+// Health endpoints
 router
   .get('/health', HealthController.health);
 
+// Person endpoints
+router
+  .post('/person', PersonController.create);
+  
 module.exports = router;
