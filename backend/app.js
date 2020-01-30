@@ -1,16 +1,8 @@
-const path = require('path');
-require('dotenv').config({ path: '../.env' });
 const Koa = require('koa');
 const app = new Koa();
+const router = require('./api/routes/router');
 
-const PORT = process.env.PORT;
+app.use(router.routes());
+app.use(router.allowedMethods());
 
-app.use(async (ctx, next) => {
-  ctx.body = {
-    message: 'Response',
-    success: true
-  }
-});
-
-app.listen(PORT);
-console.log(`Server is running on port: ${ PORT }`);
+module.exports = app;
