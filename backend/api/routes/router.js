@@ -4,6 +4,7 @@ const {
   HealthController,
   PersonController
 } = require('../controllers');
+const { isAuthenticated } = require('../policies');
 
 // Health endpoints
 router
@@ -11,8 +12,8 @@ router
 
 // Person endpoints
 router
-  .post('/person', PersonController.create)
+  .post('/person', isAuthenticated, PersonController.create)
   .post('/login', PersonController.login)
-  .get('/person', PersonController.findAll);
+  .get('/person', isAuthenticated ,PersonController.findAll);
 
 module.exports = router;

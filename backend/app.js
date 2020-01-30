@@ -7,7 +7,7 @@ const db = require('./models');
 
 app.on('error', errorHandler);
 
-db.sequelize.sync({ alter: true })
+db.sequelize.sync()
   .then(() => console.log('Database models synced ...'))
   .catch(error => {
     console.error(error);

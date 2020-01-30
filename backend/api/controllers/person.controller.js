@@ -75,7 +75,8 @@ module.exports = {
   },
   async findAll(ctx) {
     try {
-      const persons = await ctx.db.Person.findAll();
+      const persons = await ctx.db.Person.findAll({attributes: ['id', 'firstName', 'lastName', 'email', 'isAdmin']});
+      console.log(persons);
       ctx.body = {
         message: 'All persons.',
         success: true,
