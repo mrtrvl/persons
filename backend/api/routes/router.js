@@ -11,6 +11,8 @@ router
 
 // Person endpoints
 router
-  .post('/person', PersonController.create);
-  
+  .post('/person', PersonController.create)
+  .post('/login', PersonController.login)
+  .get('/person', PersonController.findAll);
+
 module.exports = router;

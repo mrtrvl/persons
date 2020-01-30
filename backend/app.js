@@ -7,12 +7,12 @@ const db = require('./models');
 
 app.on('error', errorHandler);
 
-db.sequelize.sync({force: true,  alter: true })
+db.sequelize.sync({ alter: true })
   .then(() => console.log('Database models synced ...'))
   .catch(error => {
     console.error(error);
   });
-
+app.context.db = db;
 app.use(body());
 app.use(router.routes());
 app.use(router.allowedMethods());

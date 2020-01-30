@@ -4,7 +4,10 @@ module.exports = {
     "password": `${process.env.MYSQL_ROOT_PASSWORD}`,
     "database": `${process.env.DATABASE_DEV}`,
     "host": `${process.env.DATABASE_HOST}`,
-    "dialect": "mariadb"
+    "dialect": "mariadb",
+    "dialectOptions": {
+      "timezone": "Etc/GMT+2"
+    }
   },
   "test": {
     "username": "root",
